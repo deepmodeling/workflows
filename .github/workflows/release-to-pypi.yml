@@ -4,12 +4,15 @@ on:
   workflow_call:
     secrets:
       PYPI_PASSWORD:
-        required: true
+        required: false
 
 jobs:
   release:
     name: Release to pypi
     runs-on: ubuntu-latest
+    permissions:
+        # IMPORTANT: this permission is mandatory for trusted publishing
+        id-token: write
     steps:
     - uses: actions/checkout@v2
       with:
